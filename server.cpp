@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
 
     char buffer[MAX_BUFFER_SIZE];
 
-    if (argc < 2) {
+    if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <port>" << std::endl;
         return 1;
     }
@@ -58,12 +58,6 @@ int main(int argc, char const *argv[]) {
             buffer[bytesReceived] = '\0';
             std::cout << "Received data from " << inet_ntoa(clientAddress.sin_addr) << ":" << ntohs(clientAddress.sin_port) << ": " << buffer << std::endl;
 
-            std::string response = "Server response";
-            if (send(clientSocket, response.c_str(), response.length(), 0) < 0) {
-                std::cerr << "Failed to send data" << std::endl;
-                close(clientSocket);
-                break;
-            }
         }
         close(clientSocket);
     }

@@ -50,14 +50,6 @@ int main(int argc, char const *argv[]) {
             return 1;
         }
 
-        int recvBytes = recv(clientSocket, buffer, MAX_BUFFER_SIZE, 0);
-        if (recvBytes < 0) {
-            std::cerr << "Failed to receive data" << std::endl;
-            return 1;
-        }
-
-        buffer[recvBytes] = '\0';
-        std::cout << "Received data: " << buffer << std::endl;
     }
 
     close(clientSocket);
